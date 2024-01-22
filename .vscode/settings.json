@@ -1,5 +1,9 @@
 {
     "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
         "clang-diagnostic-error"
-    ]
+    ],
+    "files.associations": {
+        "thread": "cpp",
+        "random": "cpp"
+    }
 }
