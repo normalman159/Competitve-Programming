@@ -4,6 +4,7 @@
     ],
     "files.associations": {
         "thread": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "iostream": "cpp"
     }
 }

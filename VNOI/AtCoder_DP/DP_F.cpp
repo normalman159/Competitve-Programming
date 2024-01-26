@@ -22,18 +22,38 @@ const double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-ll n, a[MXN];
+string s,t;
+ll n1,n2,dp[3003][3003];  
 void solve(){
-    cin >> n;
-    set<ll> st;
-    for (ll i=1;i<=n;i++){
-        cin >> a[i];
-        st.insert(a[i]);
+    cin >> s >> t;
+    n1=s.length();
+    n2 = t.length();
+    for (ll i=0;i<=n2;i++){
+        dp[0][i] = 0;
     }
-    for (ll i=1;i<=n;i++){
-        
+    for (ll i=1;i<=n1;i++){
+        for (ll j=1;j<=n2;j++){
+            if (s[i-1] == t[j-1]){
+                dp[i][j] = max(dp[i][j], dp[i-1][j-1]+1);
+            }
+            else dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+        }
     }
-}
+    string res;
+    ll i=n1, j = n2;
+    while (i !=0 && j != 0){
+        if (s[i-1] == t[j-1]){
+            res+=s[i-1];
+            i--,j--;
+        }
+        else if (dp[i][j-1] >= dp[i-1][j]){
+            j--;
+        }
+        else i--;
+    }
+    reverse(res.begin(), res.end());
+    cout << res;
+} 
 int main()
 {
     fast_cin();
