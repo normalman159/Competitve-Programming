@@ -22,15 +22,25 @@ const double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-ll n, a[MXN],dp[405][405];
+const ll LimN = 1e5+5, LimK = 1e2+5;
+
+ll n,k, a[LimN];
 void solve(){
-    cin >> n;
-    for (ll i=1;i<=n;i++) cin >> a[i];
-    dp[0][0] = 0;
-    dp[1][0]=0;
+    cin >> n >> k;
     for (ll i=1;i<=n;i++){
-        
+        cin >> a[i];
     }
+    ll f[LimN + LimK];
+    memset(f,0x3f,sizeof(f));
+    f[1] = 0;
+    for (ll i=1;i<=n;i++){
+        for (ll j = 0;j<=k;j++){
+            if (i + j <=n){
+                f[i+j] = min(f[i+j], f[i] + abs(a[j+i] - a[i]));
+            }
+        }
+    }
+    cout << f[n];
 }
 int main()
 {

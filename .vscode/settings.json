@@ -1,10 +1,16 @@
 {
     "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
+        "clang-diagnostic-error",
+        "clang-diagnostic-error",
         "clang-diagnostic-error"
     ],
     "files.associations": {
         "thread": "cpp",
         "random": "cpp",
-        "iostream": "cpp"
-    }
+        "iostream": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp",
+        "valarray": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

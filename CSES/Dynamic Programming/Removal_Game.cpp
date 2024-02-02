@@ -1,0 +1,76 @@
+#include <bits/stdc++.h>  
+ 
+using namespace std;
+ 
+typedef long long ll;
+const ll MXN = 2e6 + 5;
+const long long INF = 1e15;
+const ll MOD = 1e9+7;
+const double eps = 1e-12;
+#define forn(i,e) for(ll i = 0; i < e; i++)
+#define forsn(i,s,e) for(ll i = s; i < e; i++)
+#define rforn(i,s) for(ll i = s; i >= 0; i--)
+#define rforsn(i,s,e) for(ll i = s; i >= e; i--)
+#define ln "\n"
+#define dbg(x) cout<<#x<<" = "<<x<<ln
+#define mp make_pair
+#define pb push_back
+#define fi first
+#define se second
+#define INF 2e18
+#define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
+#define all(x) (x).begin(), (x).end()
+#define sz(x) ((ll)(x).size())
+
+/*
+Gọi dp[l][r] là độ chênh lệch số điểm người 1 và 2 khi game bắt đầu trong [l,r]
+dp[l][r] = score1 - score2
+Khi người 1 bắt đầu trước => dp[l][r] (+)
+Khi người 2 bắt đầu trước => dp[l][r] (-)
+Khi l==r => dp[l][r] = a[l]
+dp[l][r] = max(a[l] - dp[l+1][r], a[r] - dp[l][r-1])
+ans = (sum + dp[1][n])/2 
+*/
+
+
+ll n, a[MXN], dp[5003][5003],sum=0;
+ll giai(ll l,ll r){
+    if (dp[l][r] !=-1){
+        return dp[l][r];
+    }
+    if (l==r){
+        return dp[l][r] = a[l];
+    }
+    return dp[l][r] = max(a[l]- giai(l+1,r), a[r] -giai(l,r-1));
+}
+
+void solve(){
+    cin >> n;
+    for (ll i=1;i<=n;i++){
+        cin >> a[i];
+        sum+=a[i];
+    } 
+    for (ll i=1;i<=n;i++){
+        for (ll j=1;j<=n;j++) dp[i][j] = -1;
+    }
+
+    // for (ll l = 1; l<=n;l++){
+    //     for (ll r = n;r>=1;r--){
+    //         if (l==r){
+    //             dp[l][r] = a[l];
+    //         }
+    //         else{
+    //             dp[l][r] = max(a[l] - dp[l+1][r], a[r] - dp[l][r-1]);
+    //         }
+    //     }       
+    // }
+
+    cout << (sum + giai(1,n))/2;
+}
+int main()
+{
+    fast_cin();
+    solve();
+    cerr << "Time elapsed: " << (1.0 * clock() / CLOCKS_PER_SEC) << " s.\n";
+    return 0;
+}
