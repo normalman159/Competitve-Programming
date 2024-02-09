@@ -21,32 +21,25 @@ const double eps = 1e-12;
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
-
 ll n;
-struct gift
-{
-    ll id, a,w;
-}; 
-gift t[MXN];
-
-void build(){
-    
-}
-
+const ll LimN = 1e6+5;
 void solve(){
     cin >> n;
-    for (ll i=1;i<=n;i++){
-        cin >> t[i].a >> t[i].w;
-        t[i].id  = i;
+    unordered_map<ll,ll> mp;
+    ll res = -0x3f;
+    for(ll i=1;i<=n;i++){
+        ll x; cin >> x;
+        mp[x]++;
+        res=max(res,mp[x]);
     }
-    ll dp[MXN];
-    dp[0] = 0;
-
+    cout << res;
 }
 int main()
 {
+    // freopen("CAU2.INP", "r",stdin);
+    // freopen("CAU2.OUT","w",stdout);
     fast_cin();
     solve();
-    cerr << "Time elapsed: " << (1.0 * clock() / CLOCKS_PER_SEC) << " s.\n";
+    cerr << " Time elapsed: " << (1.0 * clock() / CLOCKS_PER_SEC) << " s.\n";
     return 0;
 }
