@@ -44,8 +44,8 @@ void solve(){
 }
 int main()
 {
-    freopen("KTHNUM.INP","r",stdin);
-    freopen("KTHNUM.OUT","w",stdout);
+    // freopen("KTHNUM.INP","r",stdin);
+    // freopen("KTHNUM.OUT","w",stdout);
     fast_cin();
     solve();
     return 0;

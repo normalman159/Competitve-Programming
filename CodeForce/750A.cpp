@@ -10,19 +10,20 @@ const ll MOD = 1e9+7;
 #define pb push_back
 #define INF 2e18
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
-string s;
+
+//My first fucking solved-CP problem in 2024  
+
+ll n,k;
 void solve(){
-    cin >> s;
-    ll res = 0;
-    ll n = s.size();
-    s = ' ' +s;
-    for (ll i=1;i<=n;i++){
-        for (ll j = i;j<=n;j++){
-            if (s[j] != s[i]){
-                res = max(res, j-i);
-                break;
-            }
-        }
+    cin >> n >> k;
+    ll end = 4*60 - k;
+    // cout << end << ln;
+    ll cur = 0,res =0,i=1;
+    while (cur + 5*i<= end && i <=n){
+        cur+=i*5;
+        // cout << cur << ln;
+        i++;
+        res++;
     }
     cout << res;
 }
