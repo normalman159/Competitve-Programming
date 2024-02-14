@@ -10,7 +10,7 @@ const ll MOD = 1e9+7;
 #define pb push_back
 #define INF 2e18
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
-const ll Lim = 1e7+5;
+const ll Lim = 1e6+5;
 bool nt[Lim];
 ll a,b;
 void sangnt(ll n){
@@ -24,23 +24,24 @@ void sangnt(ll n){
         }
     }
 }
-bool checkdx(ll x){
+ll checkdx(ll x){
     ll x1  = x, res = 0;
     while (x >0){
-        res+=x%10;
+        res = res * 10 + x%10;
         x/=10;
     }
-    if (res == x1) return 1;
-    return 0;
+    // if (res == x1) return 1;
+    // return 0;
+    return res;
 }
 void solve(){
     cin >> a >> b;
     ll a1 = sqrt(a), b1 = sqrt(b);
     if (a1*a1  < a) a1++;
-    sangnt(b1);
+    sangnt(1e6);
     ll res = 0;
     for (ll i=a1;i<=b1;i++){
-        if (nt[i] && checkdx(i)){
+        if (nt[i]==true && i==checkdx(i)){
             res++;
         }
     }
@@ -48,8 +49,8 @@ void solve(){
 }
 int main()
 {    
-    // freopen("SOCPDEP.INP","r",stdin);
-    // freopen("SOCPDEP.OUT","w",stdout);
+    freopen("SOCPDEP.INP","r",stdin);
+    freopen("SOCPDEP.OUT","w",stdout);
     fast_cin();
     solve();
     return 0;

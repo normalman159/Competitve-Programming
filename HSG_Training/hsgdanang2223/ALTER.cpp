@@ -20,34 +20,23 @@ void solve(){
     //Loai 0 -> tang a[j] > a[i]
     //Loai 1 -> giam a[j] < a[i]
     // 0 1 0 1 0 1 0 1 0 1
+    ll ans= 0;
     for (ll i=1;i<=n;i++){
         f[i][0] += 1;
-        // for (ll j =1;j<i;j++){
-        //     if (a[j] > a[i]){
-        //         f[i][0]+=f[j][1]%MOD;
-        //     }
-        // }
-        // for (ll j = 1;j<i;j++){
-        //     if (a[j] < a[i]){
-        //         f[i][1]+=f[j][0] %MOD;
-        //     }
-        // }
         ll k = a[i] - 'A';
+        for (ll j = k+1;j<26;j++){
+            f[i][0]+=t[j][1];
+            f[i][0]%=MOD;
+        }
         for (ll j = 0; j<k;j++){
             f[i][1]+=t[j][0];
             f[i][1]%=MOD;
         }
-        for (ll j = k+1;j<=26;j++){
-            f[i][0]+=t[j][1];
-            f[i][0]%=MOD;
-        }
-        t[i][1]+=f[i][1];
-        t[i][0]+=f[i][0];
-        t[i][1]%=MOD;
-        t[i][0]%=MOD;
-    }
-    ll ans= 0;
-    for (ll i=1;i<=n;i++){
+
+        t[k][1]+=f[i][1];
+        t[k][0]+=f[i][0];
+        t[k][1]%=MOD;
+        t[k][0]%=MOD;
         ans+= f[i][0] + f[i][1];
         ans%=MOD;
     }

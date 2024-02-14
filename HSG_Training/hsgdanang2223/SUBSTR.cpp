@@ -16,8 +16,9 @@ void solve(){
     ll res = 0;
     ll n = s.size();
     s = ' ' +s;
-    for (ll i=1;i<=n;i++){
-        for (ll j = i;j<=n;j++){
+    s+='0';
+    for (ll i=1;i<=n+1;i++){
+        for (ll j = i;j<=n+1;j++){
             if (s[j] != s[i]){
                 res = max(res, j-i);
                 break;

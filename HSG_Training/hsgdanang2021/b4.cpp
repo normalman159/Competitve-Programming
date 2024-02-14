@@ -11,7 +11,7 @@ const ll MOD = 1e9+7;
 #define INF 2e18
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 const ll LimN = 1e2+5;
-ll n,k,a[LimN], f[LimN][LimN][LimN],cnt2[LimN], cnt5[LimN];
+ll n,k,a[LimN], f[LimN][LimN][LimN*60],cnt2[LimN], cnt5[LimN];
 ll tach(ll n, ll k){
     ll res = 0;
     while(n%k==0){
@@ -36,7 +36,7 @@ void solve(){
             for (ll f2=0;f2<=j*60;f2++){
                 if (f[i][j][f2]!=-1){
                     f[i+1][j+1][f2+cnt2[i+1]] = max(f[i+1][j+1][f2+cnt2[i+1]], f[i][j][f2] + cnt5[i+1]);
-                    f[i+1][j][f2] = max(f[i+1][j][f2], f[i][j][f2] + cnt5[i+1]);
+                    f[i+1][j][f2] = max(f[i+1][j][f2], f[i][j][f2]);
                 }
             }
         }

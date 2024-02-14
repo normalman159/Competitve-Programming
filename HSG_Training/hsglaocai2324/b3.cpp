@@ -11,36 +11,33 @@ const ll MOD = 1e9+7;
 #define INF 2e18
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 const ll LimN = 1e6+5;
-ll n,a[LimN];
-bool nt[LimN];
-void sangnt(ll n){
-    memset(nt,true,sizeof(nt));
-    nt[0] = nt[1] = 0;
-    for (ll i=2;i*i<=n;i++){
-        if (nt[i]){
-            for (ll j=i*i;j<=n;j+=i){
-                nt[j] = 0;
+ll n, a[LimN];
+
+ll cnt(ll x){
+    ll res = 0;
+    for (ll i=1;i*i<=x;i++){
+        if (x%i==0){
+            res+=i;
+            if (i != x/i){
+                res+=x/i;
             }
         }
     }
+    return res;
 }
-
-
 
 void solve(){
     cin >> n;
     for (ll i=1;i<=n;i++){
         cin >> a[i];
     }
-    sangnt(1e6);
-
     for (ll i=1;i<=n;i++){
-        ll k = sqrt(a[i]);
-        if (nt[k] == true && k*k == a[i]){
-            cout << "YES" << ln;
-        }
-        else cout << "NO" << ln;
+        ll k = cnt(a[i]);
+        k-=a[i];
+        if (a[i] < k) cout << 1 << ln;
+        else cout << 0 << ln;
     }
+    // cout << cnt(18);
 
 }
 int main()

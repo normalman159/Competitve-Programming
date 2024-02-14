@@ -22,7 +22,8 @@ void solve(){
     }
     ll res = 1;
     for (ll i=l;i<=r;i++){
-        res = (res*i)%2022;
+       res *= i%2022;
+       res%=2022;
     }
     cout << res;
 }

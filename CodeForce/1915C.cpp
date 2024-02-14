@@ -10,29 +10,25 @@ const ll MOD = 1e9+7;
 #define pb push_back
 #define INF 2e18
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
-string s;
+ll t;
 void solve(){
-    cin >> s;
-    ll n = s.size();
-    ll res = -INF,curr=0;
-    for (ll i=0;i<n;i++){
-        if (s[i] == '0'){
-            curr++;
+    cin >> t;
+    while (t--){
+        ll n; cin >> n;
+        ll sum =0;
+        for (ll i=1;i<=n;i++){
+            ll x; cin >>x;
+            sum+=x;
         }
-        else{
-            res = max(res, curr);
-            curr = 0;
+        ll k = sqrt(sum);
+        if (k*k == sum){
+            cout << "YES" <<ln;
         }
+        else cout << "NO" <<ln;
     }
-    if (curr >0){
-        res = max(res,curr);
-    }
-    cout << max(res,0LL);
 }
 int main()
 {
-    // freopen("XAUCON.INP","r",stdin);
-    // freopen("XAUCON.OUT","w",stdout);
     fast_cin();
     solve();
     return 0;

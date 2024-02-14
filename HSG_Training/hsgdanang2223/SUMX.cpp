@@ -21,6 +21,8 @@ void solve(){
     }
     cin >> x;
     ll res = 0;
+    //a[i] + a[j] = x
+    //a[j] = x-a[i]
     for (ll i=0;i<n;i++){
         ll j = find(a + 1 + i, a + n, x-a[i]) - a;
         if (j !=n){
@@ -32,6 +34,7 @@ void solve(){
                 cnt[a[i]]--;
             }
         }
+        
     }
     cout << res;
 }

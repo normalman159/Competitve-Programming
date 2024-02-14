@@ -43,7 +43,7 @@ ll inversion(ll k){
 }
 
 ll count_C(ll n, ll k){
-    return factor[n] * inversion(factor[k] * factor[n-k] %MOD) %MOD;
+    return factor[n] * inversion(factor[k] %MOD * factor[n-k] %MOD) %MOD;
 }
 
 void solve(){
@@ -70,14 +70,14 @@ void solve(){
     //     cout << cnt[i] << " ";
     // }
     // cout << u << ln;
-    fac(LimN);
+    fac(1e2);
     f[0][0] = 1;
     for (ll i=0;i<u;i++){
         for (ll j=0;j<=k;j++){
             for (ll t = 0; t<= cnt[i+1];t++){
                 ll coef = count_C(cnt[i+1], t);
                 ll z = tohop(t);
-                f[i+1][j + z]+=f[i][j] * coef;
+                f[i+1][j + z]+=f[i][j] * coef % MOD;
                 f[i+1][j+z]%=MOD;
             }
         }
