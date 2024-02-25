@@ -12,17 +12,23 @@ const ll MOD = 1e9+7;
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 const ll Lim = 1e6+5;
 string s;
-ll k, sum= 0, res  = 0, a[Lim];
+ll k, sum= 0, res  = 0, a[Lim],cnt[Lim];
 void solve(){
     cin >> k;
     cin >> s;
     ll n = s.size();
-    for (ll i=0;i<n;i++){
-        sum+=s[i] - '0';
-        if (sum >= k){
-            res+=a[sum-k]+1;
+    s = ' ' + s;
+    ll res = 0;
+    for (ll i=1;i<=n;i++){
+        if (s[i]=='1'){
+            cnt[i] = cnt[i-1]+1;   
         }
-        a[sum]++;
+        else cnt[i] = cnt[i-1];
+    }
+    a[k] = 1;
+    for (ll i=1;i<=n;i++){
+        res+=a[cnt[i]];
+        a[cnt[i] + k]++;
     }
     cout << res;
 }

@@ -28,7 +28,14 @@ void solve(){
         res = min(res, ucln(a[i],a[i+1]));
     }
     if (res == 1) cout << -1;
-    else cout << res;
+    else{
+        for (ll i=2;i<=res;i++){
+            if (res%i==0){
+                cout << i;
+                return;
+            }
+        }
+    }
 }
 int main()
 {

@@ -52,7 +52,9 @@ void solve(){
         if (nt[i]== true){
             ll k = tach(n,i);
             if (k&1) k--;
-            res = (res* powMod(i,k))%MOD;
+            res*=powMod(i,k)%MOD;
+            res%=MOD;
+            // res = (res* powMod(i,k))%MOD;
         }
     }
     cout << res;

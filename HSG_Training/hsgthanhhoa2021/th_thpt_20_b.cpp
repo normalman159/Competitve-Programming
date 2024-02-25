@@ -4,34 +4,29 @@ using namespace std;
  
 typedef long long ll;
 const ll MXN = 2e6 + 5;
-const long long INF = 1e15;
 const ll MOD = 1e9+7;
 #define ln "\n"
 #define pb push_back
 #define INF 2e18
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
-
-const ll LimN = 1e5+5, MaxN = 2*1e5+5;
-ll n,x,a[LimN], cnt[MaxN];
+const ll LimN = 1e6+5;
+ll n, a[LimN],cnt[LimN];
 void solve(){
     cin >> n;
-    for (ll i=0;i<n;i++){
-        cin >> a[i];
-    }
-    cin >> x;
-    ll res = 0;
-    //a[i] + a[j] = x
-    //a[j] = x-a[i]
-    for (ll i=0;i<n;i++){
-        if (x -a[i]>=0){
-            res+=cnt[x-a[i]];
-        }
+    for (ll i=1;i<=n;i++) cin >> a[i];
+    for (ll i=1;i<=n;i++){
         cnt[a[i]]++;
     }
-    cout << res;
+    ll mi = -1;
+    for (ll i=1;i<=n;i++){
+        mi = max(mi,cnt[a[i]]);
+    }
+    cout << mi;
 }
 int main()
 {
+    // freopen("CAU2.INP","r",stdin);
+    // freopen("CAU2.OUT","w",stdout);
     fast_cin();
     solve();
     return 0;

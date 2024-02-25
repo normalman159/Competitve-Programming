@@ -23,7 +23,8 @@
         "string_view": "cpp",
         "initializer_list": "cpp",
         "regex": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "*.tcc": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }
