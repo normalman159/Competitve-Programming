@@ -1,4 +1,6 @@
 # ignore ALL .log files
 *.exe
-
+*.o
+*.INP
+*.OUT
 *tempCodeRunnerFile.cpp
