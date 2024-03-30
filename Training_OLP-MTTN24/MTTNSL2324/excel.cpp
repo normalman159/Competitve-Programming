@@ -20,6 +20,23 @@ const double eps = 1e-12;
 #define ALL(x) (x).begin(), (x).end()
 #define SZ(x) ((ll)(x).size())
 ll m,n;
+string s;
+ll giai(ll l, ll r,vector<vector<ll>> &v){
+    if (r-l+1==2){
+        return v[s[r]-'0'][s[l] -'A' + 1];
+    }
+    ll cnt =0,pos=0;
+    forsn(i,l+4,r-1){
+        if (s[i]=='(') cnt++;
+        if (s[i]==')') cnt--;
+        if (cnt==0 && s[i]==','){
+            pos = i;
+            break;
+        }
+    }
+    if (s[l]=='M') return max(giai(l+4,pos-1,v) ,giai(pos+1,r-1,v) );
+    else return giai(l+4,pos-1,v) + giai(pos+1,r-1,v);
+}
 
 void solve(){
     cin >> m >> n;
@@ -31,32 +48,8 @@ void solve(){
     }
     ll q; cin >> q;
     while (q--){
-        string s; cin >> s;
-        ll z = s.size();
-        s = ' ' + s;
-        string tmp,tmp1,tmp2 ;
-        //sub1
-        if (z == 10){
-            for (ll i=1;i<=z;i++){
-                if (i <=3){
-                    tmp +=s[i];
-                }    
-                if (5 <=i && i<=6){
-                    tmp1+=s[i];
-                }
-                if (8 <= i && i<=9){
-                    tmp2+=s[i];
-                }
-            }
-            if (tmp == "SUM"){
-                cout << v[tmp1[1] - '0'][tmp1[0] - 'A' + 1] + v[tmp2[1] - '0'][tmp2[0] - 'A' + 1];
-            }
-            else{
-                cout << max(v[tmp1[1] - '0'][tmp1[0] - 'A' + 1], v[tmp2[1] - '0'][tmp2[0] - 'A' + 1]);
-            }
-            cout << ln;
-        }
-        //sub2
+        cin >> s;
+        cout << giai(0,s.size()-1,v) << ln;
     }
 }
  

@@ -21,24 +21,17 @@ const double eps = 1e-12;
 #define SZ(x) ((ll)(x).size())
  
 void solve(){
-    double x1,x2,v1,v2;
-    cin >> x1 >> x2 >> v1 >> v2;
-    if (v1 == v2 && x1 !=x2){
-        cout << -1;
-        return;
+    auto cnt = [&](ll x){
+        return x / 4 - x / 100 + x / 400;
+    };
+    ll t; cin >> t;
+    while (t--){
+        ll a,b; cin >> a >> b;
+        ll leaf_a = cnt(a-1);
+        ll leaf_b = cnt(b);
+        cout << leaf_b - leaf_a << ln;
     }
-    if (x1 == x2){
-        cout << 0;
-        return;
-    }
-    if (x1 < x2 && v1 < 0 && v2 > 0){
-        cout << -1;
-        return;
-    }
-    double up = x1 -x2;
-    double down = v2 - v1;
-    double t = up/down;
-    cout << fixed << setprecision(4) << t;
+
 }
  
  
