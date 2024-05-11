@@ -1,3 +1,7 @@
+/*
+Link: https://lqdoj.edu.vn/problem/2023thtc2b3
+*/
+
 #include <bits/stdc++.h>
 
 using namespace std;
