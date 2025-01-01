@@ -38,9 +38,27 @@ ll mul(ll x, ll y)
     return (long long)x * y % MOD;
 }
 
-void solve()
-{
-    
+
+void work(){
+    ll n; cin >> n;
+    string s; cin >> s;
+    vector<ll> ocurr(26,0);
+    for (auto x : s) ocurr[x - 'a']++;
+    tuple<ll,char,ll> low,high;
+    low = high = {ocurr[s[0] - 'a'], s[0], 0};
+    for (ll i = 1; i<n;i++){
+        low = min(low , {ocurr[s[i] - 'a'], s[i], i});
+        high = max(high, {ocurr[s[i] - 'a'], s[i], i });
+    }
+    s[get<2>(low)] = get<1>(high);
+    cout << s << ln;        
+}
+
+void solve(){
+    ll t; cin >> t;
+    while (t--){
+        work();
+    }
 }
 
 int main()

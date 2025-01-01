@@ -38,11 +38,28 @@ ll mul(ll x, ll y)
     return (long long)x * y % MOD;
 }
 
-void solve()
-{
-    
+void work(){
+    ll k; cin >> k;
+    vector<ll> a(k);
+    for (auto &x : a) cin >> x;
+    sort(ALL(a));
+    for (auto x : a){
+        ll se = (k-2)/x;
+        if (se * x != k-2) continue;
+        if (binary_search(ALL(a), se)){
+            cout << x << " " << se << ln;
+            return;
+        }
+    }
 }
 
+void solve(){
+    ll t; cin >> t;
+    while (t--){
+        work();
+    }
+}   
+    
 int main()
 {
     fast_cin();

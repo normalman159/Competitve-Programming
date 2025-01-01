@@ -38,9 +38,28 @@ ll mul(ll x, ll y)
     return (long long)x * y % MOD;
 }
 
-void solve()
-{
-    
+bool work(){
+    ll n; cin >> n;
+    ll sumOd = 0, sumEv = 0, cntOd =0 , cntEv = 0;
+    vector<ll> v(n);
+    for (auto &x : v) cin >> x;
+    for (int i = 1; i<=n;i++){
+        if (i & 1) sumOd += v[i-1], cntOd++;
+        else sumEv += v[i-1], cntEv++;
+    }
+    ll k1 = sumOd / cntOd, k2 = sumEv/cntEv;
+    if (k1 * cntOd != sumOd || k2 * cntEv != sumEv) return false;
+    if (k1 == k2) return true;
+    return false;
+}
+
+void solve(){
+    ll t; cin >> t;
+    while (t--){
+        if (work()) cout << "YES";
+        else cout << "NO";
+        cout << ln;
+    }
 }
 
 int main()

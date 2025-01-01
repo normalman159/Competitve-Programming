@@ -38,11 +38,28 @@ ll mul(ll x, ll y)
     return (long long)x * y % MOD;
 }
 
-void solve()
-{
-    
+void work(){
+    ll n, m; cin >> n >> m;
+    vector<string> v(n);
+    for (auto &x : v) cin >> x;
+    ll cnt_char = 0;
+    ll j = 0, ans=0;
+    while (true){
+        if (cnt_char + v[j].size() > m) break;
+        cnt_char += v[j].size();
+        j++;
+        ans++;
+    }
+    cout << ans << ln;
 }
 
+void solve(){
+    ll t; cin >> t;
+    while (t--){
+        work();
+    }
+}   
+    
 int main()
 {
     fast_cin();

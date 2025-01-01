@@ -1,7 +1,7 @@
-#include <bits/stdc++.h>  
- 
+#include <bits/stdc++.h>
+
 using namespace std;
- 
+
 typedef long long ll;
 const ll MXN = 2e6 + 5;
 const ll MOD = 1e9+7;
@@ -21,7 +21,7 @@ void solve(){
     for (ll i=1;i<=n;i++){
         if (s[i]=='a') a[i] = 1;
         else a[i] = 0;
-    } 
+    }
     for (ll i=1;i<=n;i++){
         if (a[i]==1){
             p[i] = p[i-1] + 1;
@@ -32,7 +32,6 @@ void solve(){
     for (ll i=0;i<=n;i++){
         res+=cnt1[p[i]];
         cnt1[p[i]]++;
-        // cout << cnt1[p[i]] << " " << p[i] << ln;
     }
     cout << res;
 }

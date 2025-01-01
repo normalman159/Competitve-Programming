@@ -4,3 +4,7 @@
 *.INP
 *.OUT
 *tempCodeRunnerFile.cpp
+*.ans
+*TASK.cpp
+*TASK_trau.cpp
+*TASK_SinhTest.cpp

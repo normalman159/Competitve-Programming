@@ -37,12 +37,31 @@ ll mul(ll x, ll y)
 {
     return (long long)x * y % MOD;
 }
-
-void solve()
-{
-    
+const ll LimN = 2e5 + 5;
+ll st[LimN];
+void work(){
+    for (ll i=0;i<LimN;i++) st[i] = 0;
+    ll n,k; cin >> n >> k;
+    for (ll i=1;i<=k;i++){
+        ll x,y; cin >> x >> y;
+        st[x]+=y;
+    }
+    sort(st,st+k+1);
+    ll ans=0;
+    for (ll i=0;i<n;i++){
+        if (k-i < 0) break;
+        ans+=st[k-i];
+    }
+    cout << ans << ln;
 }
 
+void solve(){
+    ll t; cin >> t;
+    while(t--){
+        work();
+    }
+}   
+    
 int main()
 {
     fast_cin();

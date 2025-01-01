@@ -38,11 +38,36 @@ ll mul(ll x, ll y)
     return (long long)x * y % MOD;
 }
 
-void solve()
-{
-    
+void work(){
+    string n; cin >> n;
+    ll sum = 0, cnt_2 = 0, cnt_3 = 0;
+    for (auto x : n){
+        sum+= x - '0';
+        if (x == '2') cnt_2++;
+        if (x == '3' ) cnt_3++;
+    }
+    ll phandu = sum%9;
+    if (phandu == 0){
+        cout << "YES" << ln; return;
+    }
+    for (ll x = 0; x <= cnt_2;x++){
+        for (ll y = 0; y<= cnt_3;y++){
+            ll newphandu = (sum + 2*x + 6*y) % 9;
+            if (newphandu % 9 == 0){
+                cout << "YES"<< ln; return;
+            }
+        }
+    }
+    cout << "NO" << ln;
 }
 
+void solve(){
+    ll t; cin >> t;
+    while (t--){
+        work();
+    }
+}   
+    
 int main()
 {
     fast_cin();

@@ -38,11 +38,41 @@ ll mul(ll x, ll y)
     return (long long)x * y % MOD;
 }
 
-void solve()
-{
-    
+void work(){
+    ll n,m, L; cin >> n >> m >> L;
+    vector<pair<ll,ll>> hurdles(n),powers(m);
+    priority_queue<ll> prq;
+    for (auto &hurd : hurdles) cin >> hurd.first >> hurd.second;
+    for (auto &power : powers) {
+        cin >> power.first >> power.second;
+    }
+    ll ans = 0, j = 0, init_power = 1;
+    for (ll i=0; i<n;i++){
+        ll need = hurdles[i].se - hurdles[i].fi + 1 +1;
+        while (j < m && powers[j].fi < hurdles[i].fi) {
+            prq.push(powers[j].se);
+            j++;
+        }
+        while (!prq.empty() && init_power < need){
+            init_power += prq.top();
+            prq.pop();
+            ans++;
+        }
+        if (init_power < need){
+            cout << "-1" << ln;
+            return;
+        }
+    }
+    cout << ans << ln;
 }
 
+void solve(){
+    ll t; cin >> t;
+    while (t--){
+        work();
+    }
+}   
+    
 int main()
 {
     fast_cin();

@@ -38,9 +38,36 @@ ll mul(ll x, ll y)
     return (long long)x * y % MOD;
 }
 
+void work()
+{
+    ll a, b;
+    cin >> a >> b;
+    if (a >= b)
+    {
+        cout << a << ln;
+        return;
+    }
+    //  a & b => a - x & b - 2x  => a-x >= b-2x => a
+    if (b - a >= 0)
+    {
+        ll x = b - a;
+        if (a - x <= 0)
+            cout << 0 << ln;
+        else
+            cout << a - x << ln;
+    }
+    else
+        cout << 0 << ln;
+}
+
 void solve()
 {
-    
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+        work();
+    }
 }
 
 int main()

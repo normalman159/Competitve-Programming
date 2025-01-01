@@ -38,11 +38,30 @@ ll mul(ll x, ll y)
     return (long long)x * y % MOD;
 }
 
-void solve()
-{
-    
+          
+
+void work(){
+    ll n; cin >> n;
+    if (n <= 4){
+        cout << -1 << ln; return;
+    }
+    for (ll i = 2; i<= n; i+=2){
+        if (i != 4) cout << i << " ";
+    }
+    cout << "4 5 ";
+    for (ll i=1;i<=n;i+=2){
+        if (i!=5) cout << i << " ";
+    }
+    cout << ln;
 }
 
+void solve(){
+    ll t; cin >> t;
+    while (t--){
+        work();
+    }
+}   
+    
 int main()
 {
     fast_cin();
