@@ -38,37 +38,42 @@ ll mul(ll x, ll y)
     return (long long)(x % MOD) *  (y % MOD) % MOD;
 }
 
-ll n,a,b,c;
+ll n; string s;
+ll f[35];
+ll ans = 0;
+vector<string> v;
 
-ll LCM(ll a, ll b){
-    if (a == -1 || b == -1) return -1;
-    ll p = __gcd(a,b);
-    if (b/p > n/a) return -1;
-    ll ans =  (a/p) * b;
-    return ans;
-}
-
-ll Solve_sub3(ll a, ll b){
-    if (b == -1) return 0;
-    if (a%b != 0) return 0;
-    ll z = a/b;
-    ll cnt = 0;
-    for (ll i=1; i*i<=z;i++){
-        if (z % i == 0){
-            cnt+=2;
-            if (i*i == z) cnt--;
-        }
+void backtrack(ll id, ll c){
+    if (id < 0){
+        return;
     }
-    return cnt;
-}
-
-void sub3(){
-    cout << Solve_sub3(n, LCM(a,b)) + Solve_sub3(n, LCM(b,c)) + Solve_sub3(n, LCM(c,a)) - 2*Solve_sub3(n,LCM(LCM(a,b),c));
+    if (f[id] == c){
+        backtrack(id-1,c);
+    }
+    else {
+        backtrack(id-1,3-f[id] - c);
+        ans++;
+        string tmp;
+        tmp += (char)(f[id] + 'A');
+        tmp += (char)(c + 'A');
+        v.pb(tmp);
+        f[id] = c;
+        backtrack(id-1,c);
+    }
 }
 
 void solve(){
-    cin >> n >> a >> b >> c;
-    sub3();
+    cin >> n;
+    cin >> s;
+    ll id  = 0;
+    for (auto x : s){
+        f[id++] = x - 'A';
+    }
+    backtrack(n-1,2);
+    cout << ans << ln;
+    for (auto x : v){
+        cout << x << ln;
+    }
 }
 
 int main()

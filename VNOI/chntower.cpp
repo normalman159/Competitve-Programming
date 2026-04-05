@@ -38,37 +38,26 @@ ll mul(ll x, ll y)
     return (long long)(x % MOD) *  (y % MOD) % MOD;
 }
 
-ll n,a,b,c;
-
-ll LCM(ll a, ll b){
-    if (a == -1 || b == -1) return -1;
-    ll p = __gcd(a,b);
-    if (b/p > n/a) return -1;
-    ll ans =  (a/p) * b;
-    return ans;
-}
-
-ll Solve_sub3(ll a, ll b){
-    if (b == -1) return 0;
-    if (a%b != 0) return 0;
-    ll z = a/b;
-    ll cnt = 0;
-    for (ll i=1; i*i<=z;i++){
-        if (z % i == 0){
-            cnt+=2;
-            if (i*i == z) cnt--;
+//f[i][j]: so cach toi thieu de dua i dia su dung j cot
+unsigned long long f[70][70];
+void solve(){
+    ll n,m;
+    for (ll i= 0; i<=65; i++){
+        for (ll j = 0; j <= 65; j++) f[i][j] = LLONG_MAX;
+    }
+    f[1][2] = 1;
+    for (ll i = 3; i <= 65; i++){
+        f[1][i] = 1; 
+        for (ll j = 2; j <= 65; j++){
+            f[j][i] = f[j-1][i-1] +2 * f[1][i];
+            for (ll k = 2; k <= j-1; k++){
+                f[j][i] = min(f[j][i], f[j-k][i-1] + 2*f[k][i]);
+            }
         }
     }
-    return cnt;
-}
-
-void sub3(){
-    cout << Solve_sub3(n, LCM(a,b)) + Solve_sub3(n, LCM(b,c)) + Solve_sub3(n, LCM(c,a)) - 2*Solve_sub3(n,LCM(LCM(a,b),c));
-}
-
-void solve(){
-    cin >> n >> a >> b >> c;
-    sub3();
+    while (cin >> n >> m){
+        cout << f[n][m] << ln;
+    }
 }
 
 int main()
