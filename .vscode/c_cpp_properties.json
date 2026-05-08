@@ -10,7 +10,9 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "windowsSdkVersion": "8.1"
+            "windowsSdkVersion": "8.1",
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerPath": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe"
         }
     ],
     "version": 4
