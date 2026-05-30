@@ -29,71 +29,64 @@ ll sub(ll x, ll y) { return ((x - y) % MOD + MOD) % MOD; }
 
 ll mul(ll x, ll y) { return (long long)x * y % MOD; }
 
+bool dq(ll i, ll &n, ll &m, ll &MAX, vector<pair<ll, ll>> &v, vector<ll> &t,  vector<ll> &tmp,vector<ll> &ans){
+    if (i == n){
+        ans = tmp;
+        return 1;
+    }
+
+    for (ll j = 0; j < m; j++){
+        if (t[j] + v[i].first > MAX) continue;
+
+        t[j] += v[i].first;
+
+        tmp[v[i].second] = j;
+
+        if (dq(i+1,n,m,MAX,v,t, tmp, ans)) return 1;
+
+        t[j] -= v[i].first;
+        tmp[v[i].second] = -1;
+    }
+
+    return 0;
+}
+
 void solve() {
     ll n,m; cin >> n >> m;
     vector<pair<ll, ll>> v(n); //duration, id
-    vector<ll> ans(n), d(n);
+    vector<ll> ans(n), tmp(n,-1), t(m, 0);
+
+    ll tgianMax = -INF,  tgianTong = 0;
+
     for (ll i = 0; i < n; i++) {
         cin >> v[i].first;
         v[i].second = i;
-        d[i] = v[i].first;
+        tgianMax = max(tgianMax, v[i].first);
+        tgianTong += v[i].first;
     }
     sort(v.begin(), v.end(), [](pair<ll,ll> &a, pair<ll,ll> &b){
         return a.first > b.first;
     });
-    
-    // load,machine id
-    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
 
-    for (ll i = 0; i < m; i++) {
-        pq.push({0, i});
-    }
+    ll l = max(tgianMax, (tgianTong + m - 1)/m) , r = tgianTong;
 
-    for (ll i =0 ; i < n; i++){
-        pair<ll,ll> q = pq.top();
-        pq.pop();
+    ll time_ans = 0;
 
-        ans[v[i].second] = q.second;
-        q.first += v[i].first;
-        pq.push(q);
-    }
-
-    vector<ll> q(m,0);
-    for (ll i =0; i < n; i++){
-        q[ans[i]] += d[i];
-    }
-    bool fg = true;
-
-    while (fg){
-        fg = false;
-        ll mi = 0, ma = 0;
-
-        for (ll i=0; i < m; i++){
-            if (q[i] > q[ma]) ma = i;
-            if (q[i] < q[mi]) mi = i;
+    while (l <= r){
+        ll mid = (l + r) >> 1;
+        t.assign(m, 0);
+        if (dq(0,n,m,mid,v,t,tmp,ans)){
+            time_ans = mid;
+            r = mid-1;
         }
-
-        for (ll i = 0; i < n; i++){
-            if (ans[i] != ma) continue;
-
-            ll new_max = q[ma] - d[i];
-            ll new_min = q[mi] + d[i];
-
-            if (max(new_max, new_min) < q[ma]){
-                q[ma] = new_max;
-                q[mi] = new_min;
-                ans[i] = mi;
-                fg = true;
-                break;
-            }
-
+        else{
+            l = mid+1;
         }
     }
 
-    for (auto &c : ans){
-        cout << c << " ";
-    }
+    dq(0,n,m,time_ans,v,t,tmp, ans);
 
+    for (auto &c : ans) cout << c << " ";
 }
 
 int main() {
