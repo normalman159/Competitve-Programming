@@ -42,10 +42,6 @@ void init(ll root){
     doSau[root] = 0;
     up[root][0] = root;
 
-    for (ll i = 1; i < I; i++){
-        up[root][i] = up[up[root][i-1]][i-1];
-    }
-
     q.push(root);
 
     while(!q.empty()){
@@ -59,14 +55,14 @@ void init(ll root){
             doSau[v] = doSau[u] + 1;
             up[v][0] = u;
 
+            for (ll i = 1; i < I; i++){
+                up[v][i] = up[up[v][i-1]][i-1];
+            }
+
             q.push(v);
         } 
     }
-    for (ll t : order){
-        for (ll i = 1; i < I; i++){
-            up[t][i] = up[up[t][i-1]][i-1];
-        }
-    }
+    
 
 }
 
